@@ -14,6 +14,10 @@ echo -e "\nSource Test"
 gcc -DLOG_SOURCE main.c
 ./a.out
 
-echo -e "\nColor and Source Test"
-gcc -DLOG_COLOR -DLOG_SOURCE main.c
+echo -e "\nTime Test"
+gcc -DLOG_TIME main.c
+./a.out
+
+echo -e "\nDate, Color and Source Test"
+gcc -DLOG_TIME -DLOG_COLOR -DLOG_SOURCE main.c
 ./a.out

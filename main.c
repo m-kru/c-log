@@ -1,5 +1,10 @@
 #include "log.h"
 
+log_string_t log_time(void) {
+	log_string_t s = {"10:43 1 Jan 2024 "};
+	return s;
+}
+
 int main(int argc, char *argv[]) {
 	error("error %d", 1);
 	warn("warn %d", 2);
