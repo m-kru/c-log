@@ -30,25 +30,92 @@
 #endif
 
 #ifdef LOG_SOURCE
+	#define error(fmt, ...) do {\
+		fprintf(\
+			LOG_STREAM,\
+			LOG_COLOR_RED "ERR " LOG_COLOR_RESET \
+			"%s:%d: "\
+			LOG_PREFIX fmt "\n",\
+			__FILE__, __LINE__, ## __VA_ARGS__\
+		);\
+	} while (0)
+	#define warn(fmt, ...) do {\
+		fprintf(\
+			LOG_STREAM,\
+			LOG_COLOR_YELLOW "WRN " LOG_COLOR_RESET \
+			"%s:%d: "\
+			LOG_PREFIX fmt "\n",\
+			__FILE__, __LINE__, ## __VA_ARGS__\
+		);\
+	} while (0)
 	#define info(fmt, ...) do {\
 		fprintf(\
 			LOG_STREAM,\
-			LOG_COLOR_BLUE "INF " LOG_COLOR_RESET \
+			LOG_COLOR_GREEN "INF " LOG_COLOR_RESET \
+			"%s:%d: "\
+			LOG_PREFIX fmt "\n",\
+			__FILE__, __LINE__, ## __VA_ARGS__\
+		);\
+	} while (0)
+	#define debug(fmt, ...) do {\
+		fprintf(\
+			LOG_STREAM,\
+			LOG_COLOR_BLUE "DBG " LOG_COLOR_RESET \
+			"%s:%d: "\
+			LOG_PREFIX fmt "\n",\
+			__FILE__, __LINE__, ## __VA_ARGS__\
+		);\
+	} while (0)
+	#define trace(fmt, ...) do {\
+		fprintf(\
+			LOG_STREAM,\
+			LOG_COLOR_CYAN "TRC " LOG_COLOR_RESET \
 			"%s:%d: "\
 			LOG_PREFIX fmt "\n",\
 			__FILE__, __LINE__, ## __VA_ARGS__\
 		);\
 	} while (0)
 #else
-	#define info(fmt, ...) do {\
+	#define error(fmt, ...) do {\
 		fprintf(\
 			LOG_STREAM,\
-			LOG_COLOR_BLUE "INF " LOG_COLOR_RESET \
+			LOG_COLOR_RED "ERR " LOG_COLOR_RESET \
 			LOG_PREFIX fmt "\n",\
 			## __VA_ARGS__\
 		);\
 	} while (0)
-
+	#define warn(fmt, ...) do {\
+		fprintf(\
+			LOG_STREAM,\
+			LOG_COLOR_YELLOW "WRN " LOG_COLOR_RESET \
+			LOG_PREFIX fmt "\n",\
+			## __VA_ARGS__\
+		);\
+	} while (0)
+	#define info(fmt, ...) do {\
+		fprintf(\
+			LOG_STREAM,\
+			LOG_COLOR_GREEN "INF " LOG_COLOR_RESET \
+			LOG_PREFIX fmt "\n",\
+			## __VA_ARGS__\
+		);\
+	} while (0)
+	#define debug(fmt, ...) do {\
+		fprintf(\
+			LOG_STREAM,\
+			LOG_COLOR_BLUE "DBG " LOG_COLOR_RESET \
+			LOG_PREFIX fmt "\n",\
+			## __VA_ARGS__\
+		);\
+	} while (0)
+	#define trace(fmt, ...) do {\
+		fprintf(\
+			LOG_STREAM,\
+			LOG_COLOR_CYAN "TRC " LOG_COLOR_RESET \
+			LOG_PREFIX fmt "\n",\
+			## __VA_ARGS__\
+		);\
+	} while (0)
 #endif
 
 #endif
