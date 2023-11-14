@@ -2,18 +2,18 @@
 
 set -e
 
-echo -e "Default Configuration Test\n"
+echo -e "Default Configuration Test"
 gcc main.c
 ./a.out
 
-echo -e "\n\nColors Test\n"
+echo -e "\nColors Test"
 gcc -DLOG_COLOR main.c
 ./a.out
 
-echo -e "\n\nSource Test\n"
+echo -e "\nSource Test"
 gcc -DLOG_SOURCE main.c
 ./a.out
 
-echo -e "\n\nColor and Source Test\n"
+echo -e "\nColor and Source Test"
 gcc -DLOG_COLOR -DLOG_SOURCE main.c
 ./a.out
