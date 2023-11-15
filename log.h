@@ -17,6 +17,16 @@ log_string_t log_time(void);
 	#define LOG_PREFIX
 #endif
 
+#ifdef LOG_TIME
+	#define _LOG_TIME log_time()
+#else
+	#define _LOG_TIME {""}
+#endif
+
+#ifndef LOG_LEVEL
+	#define LOG_LEVEL 3
+#endif
+
 // Black        "\x1b[30m"
 // Bright Black "\x1b[90m"
 // Red          "\x1b[31m"
@@ -46,15 +56,9 @@ log_string_t log_time(void);
 	#define LOG_COLOR_RESET     ""
 #endif
 
-#ifdef LOG_TIME
-	#define _LOG_TIME log_time()
-#else
-	#define _LOG_TIME {""}
-#endif
-
 #ifdef LOG_SOURCE
 	#ifdef LOG_TIME
-		#define error(fmt, ...) do {\
+		#define _log_error(fmt, ...) do {\
 			const log_string_t time = _LOG_TIME; \
 			fprintf(\
 				LOG_STREAM,\
@@ -65,7 +69,7 @@ log_string_t log_time(void);
 				time.str, __FILE__, __LINE__, ## __VA_ARGS__\
 			);\
 		} while (0)
-		#define warn(fmt, ...) do {\
+		#define _log_warn(fmt, ...) do {\
 			const log_string_t time = _LOG_TIME; \
 			fprintf(\
 				LOG_STREAM,\
@@ -76,7 +80,7 @@ log_string_t log_time(void);
 				time.str, __FILE__, __LINE__, ## __VA_ARGS__\
 			);\
 		} while (0)
-		#define info(fmt, ...) do {\
+		#define _log_info(fmt, ...) do {\
 			const log_string_t time = _LOG_TIME; \
 			fprintf(\
 				LOG_STREAM,\
@@ -87,7 +91,7 @@ log_string_t log_time(void);
 				time.str, __FILE__, __LINE__, ## __VA_ARGS__\
 			);\
 		} while (0)
-		#define debug(fmt, ...) do {\
+		#define _log_debug(fmt, ...) do {\
 			const log_string_t time = _LOG_TIME; \
 			fprintf(\
 				LOG_STREAM,\
@@ -98,7 +102,7 @@ log_string_t log_time(void);
 				time.str, __FILE__, __LINE__, ## __VA_ARGS__\
 			);\
 		} while (0)
-		#define trace(fmt, ...) do {\
+		#define _log_trace(fmt, ...) do {\
 			const log_string_t time = _LOG_TIME; \
 			fprintf(\
 				LOG_STREAM,\
@@ -110,7 +114,7 @@ log_string_t log_time(void);
 			);\
 		} while (0)
 	#else
-		#define error(fmt, ...) do {\
+		#define _log_error(fmt, ...) do {\
 			fprintf(\
 				LOG_STREAM,\
 				LOG_COLOR_ERR "ERR " LOG_COLOR_RESET \
@@ -119,7 +123,7 @@ log_string_t log_time(void);
 				__FILE__, __LINE__, ## __VA_ARGS__\
 			);\
 		} while (0)
-		#define warn(fmt, ...) do {\
+		#define _log_warn(fmt, ...) do {\
 			fprintf(\
 				LOG_STREAM,\
 				LOG_COLOR_WRN "WRN " LOG_COLOR_RESET \
@@ -128,7 +132,7 @@ log_string_t log_time(void);
 				__FILE__, __LINE__, ## __VA_ARGS__\
 			);\
 		} while (0)
-		#define info(fmt, ...) do {\
+		#define _log_info(fmt, ...) do {\
 			fprintf(\
 				LOG_STREAM,\
 				LOG_COLOR_INF "INF " LOG_COLOR_RESET \
@@ -137,7 +141,7 @@ log_string_t log_time(void);
 				__FILE__, __LINE__, ## __VA_ARGS__\
 			);\
 		} while (0)
-		#define debug(fmt, ...) do {\
+		#define _log_debug(fmt, ...) do {\
 			fprintf(\
 				LOG_STREAM,\
 				LOG_COLOR_DBG "DBG " LOG_COLOR_RESET \
@@ -146,7 +150,7 @@ log_string_t log_time(void);
 				__FILE__, __LINE__, ## __VA_ARGS__\
 			);\
 		} while (0)
-		#define trace(fmt, ...) do {\
+		#define _log_trace(fmt, ...) do {\
 			fprintf(\
 				LOG_STREAM,\
 				LOG_COLOR_TRC "TRC " LOG_COLOR_RESET \
@@ -158,7 +162,7 @@ log_string_t log_time(void);
 	#endif
 #else
 	#ifdef LOG_TIME
-		#define error(fmt, ...) do {\
+		#define _log_error(fmt, ...) do {\
 			const log_string_t time = _LOG_TIME; \
 			fprintf(\
 				LOG_STREAM,\
@@ -168,7 +172,7 @@ log_string_t log_time(void);
 				time.str, ## __VA_ARGS__\
 			);\
 		} while (0)
-		#define warn(fmt, ...) do {\
+		#define _log_warn(fmt, ...) do {\
 			const log_string_t time = _LOG_TIME; \
 			fprintf(\
 				LOG_STREAM,\
@@ -178,7 +182,7 @@ log_string_t log_time(void);
 				time.str, ## __VA_ARGS__\
 			);\
 		} while (0)
-		#define info(fmt, ...) do {\
+		#define _log_info(fmt, ...) do {\
 			const log_string_t time = _LOG_TIME; \
 			fprintf(\
 				LOG_STREAM,\
@@ -188,7 +192,7 @@ log_string_t log_time(void);
 				time.str, ## __VA_ARGS__\
 			);\
 		} while (0)
-		#define debug(fmt, ...) do {\
+		#define _log_debug(fmt, ...) do {\
 			const log_string_t time = _LOG_TIME; \
 			fprintf(\
 				LOG_STREAM,\
@@ -198,7 +202,7 @@ log_string_t log_time(void);
 				time.str, ## __VA_ARGS__\
 			);\
 		} while (0)
-		#define trace(fmt, ...) do {\
+		#define _log_trace(fmt, ...) do {\
 			const log_string_t time = _LOG_TIME; \
 			fprintf(\
 				LOG_STREAM,\
@@ -209,7 +213,7 @@ log_string_t log_time(void);
 			);\
 		} while (0)
 	#else
-		#define error(fmt, ...) do {\
+		#define _log_error(fmt, ...) do {\
 			fprintf(\
 				LOG_STREAM,\
 				LOG_COLOR_ERR "ERR " LOG_COLOR_RESET \
@@ -217,7 +221,7 @@ log_string_t log_time(void);
 				## __VA_ARGS__\
 			);\
 		} while (0)
-		#define warn(fmt, ...) do {\
+		#define _log_warn(fmt, ...) do {\
 			fprintf(\
 				LOG_STREAM,\
 				LOG_COLOR_WRN "WRN " LOG_COLOR_RESET \
@@ -225,7 +229,7 @@ log_string_t log_time(void);
 				## __VA_ARGS__\
 			);\
 		} while (0)
-		#define info(fmt, ...) do {\
+		#define _log_info(fmt, ...) do {\
 			fprintf(\
 				LOG_STREAM,\
 				LOG_COLOR_INF "INF " LOG_COLOR_RESET \
@@ -233,7 +237,7 @@ log_string_t log_time(void);
 				## __VA_ARGS__\
 			);\
 		} while (0)
-		#define debug(fmt, ...) do {\
+		#define _log_debug(fmt, ...) do {\
 			fprintf(\
 				LOG_STREAM,\
 				LOG_COLOR_DBG "DBG " LOG_COLOR_RESET \
@@ -241,7 +245,7 @@ log_string_t log_time(void);
 				## __VA_ARGS__\
 			);\
 		} while (0)
-		#define trace(fmt, ...) do {\
+		#define _log_trace(fmt, ...) do {\
 			fprintf(\
 				LOG_STREAM,\
 				LOG_COLOR_TRC "TRC " LOG_COLOR_RESET \
@@ -250,6 +254,52 @@ log_string_t log_time(void);
 			);\
 		} while (0)
 	#endif
+#endif
+
+#if LOG_LEVEL == 0 
+	#define error
+	#define warn
+	#define info
+	#define debug
+	#define trace
+#elif LOG_LEVEL == 1
+	#define error _log_error
+	#define warn 
+	#define info
+	#define debug
+	#define trace
+#elif LOG_LEVEL == 2
+	#define error _log_error
+	#define warn  _log_warn
+	#define info
+	#define debug
+	#define trace
+#elif LOG_LEVEL == 3
+	#define error _log_error
+	#define warn  _log_warn
+	#define info  _log_info
+	#define debug
+	#define trace
+#elif LOG_LEVEL == 4
+	#define error _log_error
+	#define warn  _log_warn
+	#define info  _log_info
+	#define debug _log_debug
+	#define trace
+#elif LOG_LEVEL == 5
+	#define error _log_error
+	#define warn  _log_warn
+	#define info  _log_info
+	#define debug _log_debug
+	#define trace _log_trace
+#else
+	#error "Invalid LOG_LEVEL, valid log levels are:\
+ 0 - no logs,\
+ 1 - only error,\
+ 2 - error and warn\
+ 3 - error, warn and info\
+ 4 - error, warn, info and debug\
+ 5 - error, warn, info, debug and trace."
 #endif
 
 #endif // _LOG_H_

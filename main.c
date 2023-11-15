@@ -6,11 +6,11 @@ log_string_t log_time(void) {
 }
 
 int main(int argc, char *argv[]) {
-	error("error %d", 1);
-	warn("warn %d", 2);
-	info("info %d", 3);
-	debug("debug %d", 4);
-	trace("trace %d", 5);
+	error("log level %d", 1);
+	warn("log level %d", 2);
+	info("log level %d", 3);
+	debug("log level %d", 4);
+	trace("log level %d", 5);
 
 	return 0;
 }
