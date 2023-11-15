@@ -1,7 +1,7 @@
 #include "log.h"
 
-log_string_t log_time(void) {
-	log_string_t s = {"10:43 1 Jan 2024 "};
+struct log_time log_time(void) {
+	struct log_time s = {"10:43 1 Jan 2024 "};
 	return s;
 }
 

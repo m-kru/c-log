@@ -22,6 +22,6 @@ echo -e "\nTime Test"
 gcc -DLOG_TIME main.c
 ./a.out
 
-echo -e "\nTime, Color and Source Test"
-gcc -DLOG_TIME -DLOG_COLOR -DLOG_SOURCE main.c
+echo -e "\nTime, Color, Source Log Level Test"
+gcc -DLOG_TIME -DLOG_COLOR -DLOG_SOURCE -DLOG_LEVEL=5 main.c
 ./a.out

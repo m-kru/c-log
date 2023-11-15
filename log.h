@@ -3,11 +3,11 @@
 
 #include <stdio.h>
 
-typedef struct {
+struct log_time {
 	char str[32];
-} log_string_t;
+};
 
-log_string_t log_time(void);
+struct log_time log_time(void);
 
 #ifndef LOG_STREAM
 	#define LOG_STREAM stderr
@@ -59,7 +59,7 @@ log_string_t log_time(void);
 #ifdef LOG_SOURCE
 	#ifdef LOG_TIME
 		#define _log_error(fmt, ...) do {\
-			const log_string_t time = _LOG_TIME; \
+			const struct log_time time = _LOG_TIME; \
 			fprintf(\
 				LOG_STREAM,\
 				LOG_COLOR_TIME "%s" \
@@ -70,7 +70,7 @@ log_string_t log_time(void);
 			);\
 		} while (0)
 		#define _log_warn(fmt, ...) do {\
-			const log_string_t time = _LOG_TIME; \
+			const struct log_time time = _LOG_TIME; \
 			fprintf(\
 				LOG_STREAM,\
 				LOG_COLOR_TIME "%s" \
@@ -81,7 +81,7 @@ log_string_t log_time(void);
 			);\
 		} while (0)
 		#define _log_info(fmt, ...) do {\
-			const log_string_t time = _LOG_TIME; \
+			const struct log_time time = _LOG_TIME; \
 			fprintf(\
 				LOG_STREAM,\
 				LOG_COLOR_TIME "%s" \
@@ -92,7 +92,7 @@ log_string_t log_time(void);
 			);\
 		} while (0)
 		#define _log_debug(fmt, ...) do {\
-			const log_string_t time = _LOG_TIME; \
+			const struct log_time time = _LOG_TIME; \
 			fprintf(\
 				LOG_STREAM,\
 				LOG_COLOR_TIME "%s" \
@@ -103,7 +103,7 @@ log_string_t log_time(void);
 			);\
 		} while (0)
 		#define _log_trace(fmt, ...) do {\
-			const log_string_t time = _LOG_TIME; \
+			const struct log_time time = _LOG_TIME; \
 			fprintf(\
 				LOG_STREAM,\
 				LOG_COLOR_TIME "%s" \
@@ -163,7 +163,7 @@ log_string_t log_time(void);
 #else
 	#ifdef LOG_TIME
 		#define _log_error(fmt, ...) do {\
-			const log_string_t time = _LOG_TIME; \
+			const struct log_time time = _LOG_TIME; \
 			fprintf(\
 				LOG_STREAM,\
 				LOG_COLOR_TIME "%s" \
@@ -173,7 +173,7 @@ log_string_t log_time(void);
 			);\
 		} while (0)
 		#define _log_warn(fmt, ...) do {\
-			const log_string_t time = _LOG_TIME; \
+			const struct log_time time = _LOG_TIME; \
 			fprintf(\
 				LOG_STREAM,\
 				LOG_COLOR_TIME "%s" \
@@ -183,7 +183,7 @@ log_string_t log_time(void);
 			);\
 		} while (0)
 		#define _log_info(fmt, ...) do {\
-			const log_string_t time = _LOG_TIME; \
+			const struct log_time time = _LOG_TIME; \
 			fprintf(\
 				LOG_STREAM,\
 				LOG_COLOR_TIME "%s" \
@@ -193,7 +193,7 @@ log_string_t log_time(void);
 			);\
 		} while (0)
 		#define _log_debug(fmt, ...) do {\
-			const log_string_t time = _LOG_TIME; \
+			const struct log_time time = _LOG_TIME; \
 			fprintf(\
 				LOG_STREAM,\
 				LOG_COLOR_TIME "%s" \
@@ -203,7 +203,7 @@ log_string_t log_time(void);
 			);\
 		} while (0)
 		#define _log_trace(fmt, ...) do {\
-			const log_string_t time = _LOG_TIME; \
+			const struct log_time time = _LOG_TIME; \
 			fprintf(\
 				LOG_STREAM,\
 				LOG_COLOR_TIME "%s" \
