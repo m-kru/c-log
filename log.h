@@ -3,10 +3,28 @@
 
 #include <stdio.h>
 
+/*
+ * The log_time struct is used to obtain a string that shall be print
+ * when LOG_TIME macro is defined.
+ * The string is wrapped in the structure because of 2 resons:
+ *   1. To avoid allocation on the heap.
+ *   2. To have clear data ownership situation.
+ * The str buffer has fixed size of 32 bytes. It is enough to express timestamp
+ * composed of : hour, minute, second, nanosecond, day, month and year.
+ * Example: "23:59:59,999999999 1 Sep 2024\0" - 30 bytes.
+ * The string placed in the returned str buffer must be terminated with \0.
+ */
 struct log_time {
 	char str[32];
 };
 
+/*
+ * The log_time() function is used to obtain a string for the time when
+ * LOG_TIME macro is defined. It is the user's responsibility to provide
+ * implementation of this function. The recommended way is to have separate
+ * file named log_time.c with the code related only with the implementation
+ * of the log_time() function.
+ */
 struct log_time log_time(void);
 
 #ifndef LOG_STREAM
