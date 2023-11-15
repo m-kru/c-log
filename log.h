@@ -9,6 +9,7 @@
  * The string is wrapped in the structure because of 2 resons:
  *   1. To avoid allocation on the heap.
  *   2. To have clear data ownership situation.
+ *
  * The str buffer has fixed size of 32 bytes. It is enough to express timestamp
  * composed of : hour, minute, second, nanosecond, day, month and year.
  * Example: "23:59:59,999999999 1 Sep 2024\0" - 30 bytes.
@@ -45,15 +46,23 @@ struct log_time log_time(void);
 	#define LOG_LEVEL 3
 #endif
 
-// Black        "\x1b[30m"
-// Bright Black "\x1b[90m"
-// Red          "\x1b[31m"
-// Green        "\x1b[32m"
-// Yellow       "\x1b[33m"
-// Blue         "\x1b[34m"
-// Magenta      "\x1b[35m"
-// Cyan         "\x1b[36m"
-// White        "\x1b[37m"
+/*
+ * Define LOG_COLOR if you want the ERR, WRN, INF, DBG, and TRC abbreviations
+ * to be printed in color.
+ * 
+ * If for some reason the default colors don't suit you, for example of your
+ * terminal color theme, simply modify below color macros. Here is a short
+ * list with escape sequences for different colors:
+ *   Black        "\x1b[30m"
+ *   Bright Black "\x1b[90m"
+ *   Red          "\x1b[31m"
+ *   Green        "\x1b[32m"
+ *   Yellow       "\x1b[33m"
+ *   Blue         "\x1b[34m"
+ *   Magenta      "\x1b[35m"
+ *   Cyan         "\x1b[36m"
+ *   White        "\x1b[37m"
+ */
 #ifdef LOG_COLOR
 	#define LOG_COLOR_ERR       "\x1b[31m"
 	#define LOG_COLOR_WRN       "\x1b[33m"
