@@ -85,200 +85,200 @@ struct log_time log_time(void);
 
 #ifdef LOG_SOURCE
 	#ifdef LOG_TIME
-		#define _log_error(fmt, ...) do {\
-			const struct log_time time = _LOG_TIME; \
-			fprintf(\
-				LOG_STREAM,\
-				LOG_COLOR_TIME "%s" \
-				LOG_COLOR_ERR "ERR " \
+		#define _log_error(fmt, ...) do {                    \
+			const struct log_time time = _LOG_TIME;          \
+			fprintf(                                         \
+				LOG_STREAM,                                  \
+				LOG_COLOR_TIME "%s"                          \
+				LOG_COLOR_ERR "ERR "                         \
 				LOG_COLOR_FILE_LINE "%s:%d " LOG_COLOR_RESET \
-				LOG_PREFIX fmt "\n",\
-				time.str, __FILE__, __LINE__, ## __VA_ARGS__\
-			);\
+				LOG_PREFIX fmt "\n",                         \
+				time.str, __FILE__, __LINE__, ## __VA_ARGS__ \
+			);                                               \
 		} while (0)
-		#define _log_warn(fmt, ...) do {\
-			const struct log_time time = _LOG_TIME; \
-			fprintf(\
-				LOG_STREAM,\
-				LOG_COLOR_TIME "%s" \
-				LOG_COLOR_WRN "WRN " \
+		#define _log_warn(fmt, ...) do {                     \
+			const struct log_time time = _LOG_TIME;          \
+			fprintf(                                         \
+				LOG_STREAM,                                  \
+				LOG_COLOR_TIME "%s"                          \
+				LOG_COLOR_WRN "WRN "                         \
 				LOG_COLOR_FILE_LINE "%s:%d " LOG_COLOR_RESET \
-				LOG_PREFIX fmt "\n",\
-				time.str, __FILE__, __LINE__, ## __VA_ARGS__\
-			);\
+				LOG_PREFIX fmt "\n",                         \
+				time.str, __FILE__, __LINE__, ## __VA_ARGS__ \
+			);                                               \
 		} while (0)
-		#define _log_info(fmt, ...) do {\
-			const struct log_time time = _LOG_TIME; \
-			fprintf(\
-				LOG_STREAM,\
-				LOG_COLOR_TIME "%s" \
-				LOG_COLOR_INF "INF " \
+		#define _log_info(fmt, ...) do {                     \
+			const struct log_time time = _LOG_TIME;          \
+			fprintf(                                         \
+				LOG_STREAM,                                  \
+				LOG_COLOR_TIME "%s"                          \
+				LOG_COLOR_INF "INF "                         \
 				LOG_COLOR_FILE_LINE "%s:%d " LOG_COLOR_RESET \
-				LOG_PREFIX fmt "\n",\
-				time.str, __FILE__, __LINE__, ## __VA_ARGS__\
-			);\
+				LOG_PREFIX fmt "\n",                         \
+				time.str, __FILE__, __LINE__, ## __VA_ARGS__ \
+			);                                               \
 		} while (0)
-		#define _log_debug(fmt, ...) do {\
-			const struct log_time time = _LOG_TIME; \
-			fprintf(\
-				LOG_STREAM,\
-				LOG_COLOR_TIME "%s" \
-				LOG_COLOR_DBG "DBG " \
+		#define _log_debug(fmt, ...) do {                    \
+			const struct log_time time = _LOG_TIME;          \
+			fprintf(                                         \
+				LOG_STREAM,                                  \
+				LOG_COLOR_TIME "%s"                          \
+				LOG_COLOR_DBG "DBG "                         \
 				LOG_COLOR_FILE_LINE "%s:%d " LOG_COLOR_RESET \
-				LOG_PREFIX fmt "\n",\
-				time.str, __FILE__, __LINE__, ## __VA_ARGS__\
-			);\
+				LOG_PREFIX fmt "\n",                         \
+				time.str, __FILE__, __LINE__, ## __VA_ARGS__ \
+			);                                               \
 		} while (0)
-		#define _log_trace(fmt, ...) do {\
-			const struct log_time time = _LOG_TIME; \
-			fprintf(\
-				LOG_STREAM,\
-				LOG_COLOR_TIME "%s" \
-				LOG_COLOR_TRC "TRC " \
+		#define _log_trace(fmt, ...) do {                    \
+			const struct log_time time = _LOG_TIME;          \
+			fprintf(                                         \
+				LOG_STREAM,                                  \
+				LOG_COLOR_TIME "%s"                          \
+				LOG_COLOR_TRC "TRC "                         \
 				LOG_COLOR_FILE_LINE "%s:%d " LOG_COLOR_RESET \
-				LOG_PREFIX fmt "\n",\
-				time.str, __FILE__, __LINE__, ## __VA_ARGS__\
-			);\
+				LOG_PREFIX fmt "\n",                         \
+				time.str, __FILE__, __LINE__, ## __VA_ARGS__ \
+			);                                               \
 		} while (0)
 	#else
-		#define _log_error(fmt, ...) do {\
-			fprintf(\
-				LOG_STREAM,\
+		#define _log_error(fmt, ...) do {            \
+			fprintf(                                 \
+				LOG_STREAM,                          \
 				LOG_COLOR_ERR "ERR " LOG_COLOR_RESET \
-				"%s:%d "\
-				LOG_PREFIX fmt "\n",\
-				__FILE__, __LINE__, ## __VA_ARGS__\
-			);\
+				"%s:%d "                             \
+				LOG_PREFIX fmt "\n",                 \
+				__FILE__, __LINE__, ## __VA_ARGS__   \
+			);                                       \
 		} while (0)
-		#define _log_warn(fmt, ...) do {\
-			fprintf(\
-				LOG_STREAM,\
+		#define _log_warn(fmt, ...) do {             \
+			fprintf(                                 \
+				LOG_STREAM,                          \
 				LOG_COLOR_WRN "WRN " LOG_COLOR_RESET \
-				"%s:%d "\
-				LOG_PREFIX fmt "\n",\
-				__FILE__, __LINE__, ## __VA_ARGS__\
-			);\
+				"%s:%d "                             \
+				LOG_PREFIX fmt "\n",                 \
+				__FILE__, __LINE__, ## __VA_ARGS__   \
+			);                                       \
 		} while (0)
-		#define _log_info(fmt, ...) do {\
-			fprintf(\
-				LOG_STREAM,\
+		#define _log_info(fmt, ...) do {             \
+			fprintf(                                 \
+				LOG_STREAM,                          \
 				LOG_COLOR_INF "INF " LOG_COLOR_RESET \
-				"%s:%d "\
-				LOG_PREFIX fmt "\n",\
-				__FILE__, __LINE__, ## __VA_ARGS__\
-			);\
+				"%s:%d "                             \
+				LOG_PREFIX fmt "\n",                 \
+				__FILE__, __LINE__, ## __VA_ARGS__   \
+			);                                       \
 		} while (0)
-		#define _log_debug(fmt, ...) do {\
-			fprintf(\
-				LOG_STREAM,\
+		#define _log_debug(fmt, ...) do {            \
+			fprintf(                                 \
+				LOG_STREAM,                          \
 				LOG_COLOR_DBG "DBG " LOG_COLOR_RESET \
-				"%s:%d "\
-				LOG_PREFIX fmt "\n",\
-				__FILE__, __LINE__, ## __VA_ARGS__\
-			);\
+				"%s:%d "                             \
+				LOG_PREFIX fmt "\n",                 \
+				__FILE__, __LINE__, ## __VA_ARGS__   \
+			);                                       \
 		} while (0)
-		#define _log_trace(fmt, ...) do {\
-			fprintf(\
-				LOG_STREAM,\
+		#define _log_trace(fmt, ...) do {            \
+			fprintf(                                 \
+				LOG_STREAM,                          \
 				LOG_COLOR_TRC "TRC " LOG_COLOR_RESET \
-				"%s:%d "\
-				LOG_PREFIX fmt "\n",\
-				__FILE__, __LINE__, ## __VA_ARGS__\
-			);\
+				"%s:%d "                             \
+				LOG_PREFIX fmt "\n",                 \
+				__FILE__, __LINE__, ## __VA_ARGS__   \
+			);                                       \
 		} while (0)
 	#endif
 #else
 	#ifdef LOG_TIME
-		#define _log_error(fmt, ...) do {\
-			const struct log_time time = _LOG_TIME; \
-			fprintf(\
-				LOG_STREAM,\
-				LOG_COLOR_TIME "%s" \
+		#define _log_error(fmt, ...) do {            \
+			const struct log_time time = _LOG_TIME;  \
+			fprintf(                                 \
+				LOG_STREAM,                          \
+				LOG_COLOR_TIME "%s"                  \
 				LOG_COLOR_ERR "ERR " LOG_COLOR_RESET \
-				LOG_PREFIX fmt "\n",\
-				time.str, ## __VA_ARGS__\
-			);\
+				LOG_PREFIX fmt "\n",                 \
+				time.str, ## __VA_ARGS__             \
+			);                                       \
 		} while (0)
-		#define _log_warn(fmt, ...) do {\
-			const struct log_time time = _LOG_TIME; \
-			fprintf(\
-				LOG_STREAM,\
-				LOG_COLOR_TIME "%s" \
+		#define _log_warn(fmt, ...) do {             \
+			const struct log_time time = _LOG_TIME;  \
+			fprintf(                                 \
+				LOG_STREAM,                          \
+				LOG_COLOR_TIME "%s"                  \
 				LOG_COLOR_WRN "WRN " LOG_COLOR_RESET \
-				LOG_PREFIX fmt "\n",\
-				time.str, ## __VA_ARGS__\
-			);\
+				LOG_PREFIX fmt "\n",                 \
+				time.str, ## __VA_ARGS__             \
+			);                                       \
 		} while (0)
-		#define _log_info(fmt, ...) do {\
-			const struct log_time time = _LOG_TIME; \
-			fprintf(\
-				LOG_STREAM,\
-				LOG_COLOR_TIME "%s" \
+		#define _log_info(fmt, ...) do {             \
+			const struct log_time time = _LOG_TIME;  \
+			fprintf(                                 \
+				LOG_STREAM,                          \
+				LOG_COLOR_TIME "%s"                  \
 				LOG_COLOR_INF "INF " LOG_COLOR_RESET \
-				LOG_PREFIX fmt "\n",\
-				time.str, ## __VA_ARGS__\
-			);\
+				LOG_PREFIX fmt "\n",                 \
+				time.str, ## __VA_ARGS__             \
+			);                                       \
 		} while (0)
-		#define _log_debug(fmt, ...) do {\
-			const struct log_time time = _LOG_TIME; \
-			fprintf(\
-				LOG_STREAM,\
-				LOG_COLOR_TIME "%s" \
+		#define _log_debug(fmt, ...) do {            \
+			const struct log_time time = _LOG_TIME;  \
+			fprintf(                                 \
+				LOG_STREAM,                          \
+				LOG_COLOR_TIME "%s"                  \
 				LOG_COLOR_DBG "DBG " LOG_COLOR_RESET \
-				LOG_PREFIX fmt "\n",\
-				time.str, ## __VA_ARGS__\
-			);\
+				LOG_PREFIX fmt "\n",                 \
+				time.str, ## __VA_ARGS__             \
+			);                                       \
 		} while (0)
-		#define _log_trace(fmt, ...) do {\
-			const struct log_time time = _LOG_TIME; \
-			fprintf(\
-				LOG_STREAM,\
-				LOG_COLOR_TIME "%s" \
+		#define _log_trace(fmt, ...) do {            \
+			const struct log_time time = _LOG_TIME;  \
+			fprintf(                                 \
+				LOG_STREAM,                          \
+				LOG_COLOR_TIME "%s"                  \
 				LOG_COLOR_TRC "TRC " LOG_COLOR_RESET \
-				LOG_PREFIX fmt "\n",\
-				time.str, ## __VA_ARGS__\
-			);\
+				LOG_PREFIX fmt "\n",                 \
+				time.str, ## __VA_ARGS__             \
+			);                                       \
 		} while (0)
 	#else
-		#define _log_error(fmt, ...) do {\
-			fprintf(\
-				LOG_STREAM,\
+		#define _log_error(fmt, ...) do {            \
+			fprintf(                                 \
+				LOG_STREAM,                          \
 				LOG_COLOR_ERR "ERR " LOG_COLOR_RESET \
-				LOG_PREFIX fmt "\n",\
-				## __VA_ARGS__\
-			);\
+				LOG_PREFIX fmt "\n",                 \
+				## __VA_ARGS__                       \
+			);                                       \
 		} while (0)
-		#define _log_warn(fmt, ...) do {\
-			fprintf(\
-				LOG_STREAM,\
+		#define _log_warn(fmt, ...) do {             \
+			fprintf(                                 \
+				LOG_STREAM,                          \
 				LOG_COLOR_WRN "WRN " LOG_COLOR_RESET \
-				LOG_PREFIX fmt "\n",\
-				## __VA_ARGS__\
-			);\
+				LOG_PREFIX fmt "\n",                 \
+				## __VA_ARGS__                       \
+			);                                       \
 		} while (0)
-		#define _log_info(fmt, ...) do {\
-			fprintf(\
-				LOG_STREAM,\
+		#define _log_info(fmt, ...) do {             \
+			fprintf(                                 \
+				LOG_STREAM,                          \
 				LOG_COLOR_INF "INF " LOG_COLOR_RESET \
-				LOG_PREFIX fmt "\n",\
-				## __VA_ARGS__\
-			);\
+				LOG_PREFIX fmt "\n",                 \
+				## __VA_ARGS__                       \
+			);                                       \
 		} while (0)
-		#define _log_debug(fmt, ...) do {\
-			fprintf(\
-				LOG_STREAM,\
+		#define _log_debug(fmt, ...) do {            \
+			fprintf(                                 \
+				LOG_STREAM,                          \
 				LOG_COLOR_DBG "DBG " LOG_COLOR_RESET \
-				LOG_PREFIX fmt "\n",\
-				## __VA_ARGS__\
-			);\
+				LOG_PREFIX fmt "\n",                 \
+				## __VA_ARGS__                       \
+			);                                       \
 		} while (0)
-		#define _log_trace(fmt, ...) do {\
-			fprintf(\
-				LOG_STREAM,\
+		#define _log_trace(fmt, ...) do {            \
+			fprintf(                                 \
+				LOG_STREAM,                          \
 				LOG_COLOR_TRC "TRC " LOG_COLOR_RESET \
-				LOG_PREFIX fmt "\n",\
-				## __VA_ARGS__\
-			);\
+				LOG_PREFIX fmt "\n",                 \
+				## __VA_ARGS__                       \
+			);                                       \
 		} while (0)
 	#endif
 #endif
