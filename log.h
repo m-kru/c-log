@@ -1,3 +1,7 @@
+// SPDX-License-Identifier: MIT
+// https://github.com/m-kru/c-log
+// Copyright (c) 2023 Michał Kruszewski
+
 #ifndef _LOG_H_
 #define _LOG_H_
 

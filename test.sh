@@ -18,10 +18,14 @@ echo -e "\nSource Test"
 gcc -DLOG_SOURCE main.c
 ./a.out
 
+echo -e "\nPrefix Test"
+gcc -DLOG_PREFIX="\"prefix: \"" main.c
+./a.out
+
 echo -e "\nTime Test"
 gcc -DLOG_TIME main.c
 ./a.out
 
-echo -e "\nTime, Color, Source Log Level Test"
-gcc -DLOG_TIME -DLOG_COLOR -DLOG_SOURCE -DLOG_LEVEL=5 main.c
+echo -e "\nTime, Color, Log Level, Source, and Prefix Test"
+gcc -DLOG_TIME -DLOG_COLOR -DLOG_LEVEL=5 -DLOG_SOURCE -DLOG_PREFIX="\"prefix: \"" main.c
 ./a.out
