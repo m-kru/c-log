@@ -287,7 +287,7 @@ struct log_time log_time(void);
 	#endif
 #endif
 
-#if LOG_LEVEL == 0 
+#if LOG_LEVEL == 0
 	#define error
 	#define warn
 	#define info
